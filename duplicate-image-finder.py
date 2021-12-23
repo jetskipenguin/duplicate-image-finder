@@ -31,7 +31,7 @@ def determine_similarity(list1, list2):
 
 @timer
 def main():
-    file_extensions = ['png', 'jpg', 'gif', 'jpeg']
+    file_extensions = ['png', 'jpg', 'gif', 'jpeg', 'jfif']
     files = []
     file_names = []
     print("Loading Images..")
