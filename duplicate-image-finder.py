@@ -18,6 +18,17 @@ def timer(func):
     
     return wrapper
 
+def determine_similarity(list1, list2):
+
+    if list1 == list2:
+        return True
+
+    r_list1 = [round(i) for i in list1]
+    r_list2 = [round(i) for i in list2]
+
+    similarity = True if r_list1 == r_list2 else False
+    return similarity
+
 @timer
 def main():
     file_extensions = ['png', 'jpg', 'gif', 'jpeg']
@@ -37,12 +48,14 @@ def main():
         # starts at current i and searches till end of files
         for y in range(len(files)-1, i, -1):
             print("Comparing {} and {}".format(file_names[i], file_names[y]))
-            if files[i] == files[y]:
+
+            
+            similar = determine_similarity(files[i], files[y])
+            if similar:
                 print("Image A: {} Image B: {}\n".format(file_names[i], file_names[y]))
                 if file_names[i] not in dupes:
                     dupes.append(file_names[i])
 
-    
     for i in dupes:
         shutil.move(i, 'duplicates')
     
